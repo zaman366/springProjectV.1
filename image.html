@@ -1,0 +1,110 @@
+<html>
+    <head>
+<title>
+    This is file upload example
+</title>
+
+
+<link rel="stylesheet" href="screen.css" media="screen">
+
+<style media="screen">
+
+body {
+    background-color: #f0f0f0;
+    font: 100% / 162% verdana, arial, helvetica, sans-serif;
+ }
+
+.modal-label{
+    display: inline-block;
+    line-height: 2.2em;
+    padding: 0 0.62em;
+    border: 1px solid #666;
+    border-radius: 0.25em;
+    background-image: linear-gradient( to bottom, #fff, #ccc );
+    box-shadow: inset 0 0 0.1em #fff, 0.2em 0.2em 0.2em rgba( 0, 0, 0, 0.3 );
+    font-family: arial, sans-serif;
+    font-size: 0.8em;
+ }
+
+.modal-label:hover {
+    border-color: #3c7fb1;
+    background-image: linear-gradient( to bottom, #fff, #a9dbf6 );
+ }
+
+.modal-label:focus {
+    padding: 0  0.56em 0 0.68em;
+ }
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+<body>
+
+<p>
+    
+        <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;" >  
+  
+   
+
+   
+</p>
+<p>
+    
+    <label for="file" style="cursor: pointer;"  class="modal-label">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+
+
+
+
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+    
+    
+};
+</script>
+
+
+<!-- <script type="text/javascript">
+
+    $(function()
+    {
+        $('#fileUpload').on('change',function ()
+        {
+            var filePath = $(this).val();
+            console.log(filePath);
+        });
+    });
+
+</script> -->
+
+
+
+
+
+    </body>
+</html>
