@@ -1,0 +1,18 @@
+CREATE TABLE  `emp`.`leave` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `emp_id` int(11) DEFAULT NULL,
+  `emp_name` varchar(45) DEFAULT NULL,
+  `emp_dep` varchar(45) DEFAULT NULL,
+  `emp_deg` varchar(45) DEFAULT NULL,
+  `emp_subDate` varchar(45) DEFAULT NULL,
+  `emp_fromDate` varchar(45) DEFAULT NULL,
+  `emp_toDate` varchar(45) DEFAULT NULL,
+  `emp_reqDays` int(11) DEFAULT NULL,
+  `emp_levType` varchar(45) DEFAULT NULL,
+  `emp_levReason` varchar(45) DEFAULT NULL,
+  `emp_approveDays` int(11) DEFAULT NULL,
+  `emp_actionStatus` varchar(45) DEFAULT NULL,
+  `emp_changeStatus` varchar(45) DEFAULT NULL,
+  `emp_notification` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
