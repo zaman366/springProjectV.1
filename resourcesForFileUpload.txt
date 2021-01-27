@@ -1,0 +1,62 @@
+
+		// Add in dispatcher-servlet
+
+<bean id="multipartResolver"           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+    <property name="maxUploadSize" value= "10000000" />
+</bean>
+
+		//Add dependecy in pom.xml
+
+ 	<dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+//
+
+			//For Controller
+
+//    Method for Image Upload. This is a method without service layer
+    @RequestMapping(value = "/store", method = RequestMethod.POST)
+    public ModelAndView store(HttpServletRequest request, @RequestParam("pPhoto") MultipartFile file) throws IOException {
+
+        //This is for getting file name with extension
+        String pPhoto = file.getOriginalFilename();
+
+        //This is for saving file with name and extension in your local pc
+        saveFile(file, pPhoto, "/resources/product/img");
+ 
+        return new ModelAndView("product/products");
+
+    }
+
+    private void saveFile(MultipartFile file, String fileName, String path) throws IOException {
+        System.out.println("Start");
+        byte[] bytes = file.getBytes();
+        String filePath = servletContext.getRealPath(path);
+        File directory = new File(filePath);
+        File cFile = new File(
+                //This is the location of your project file to save photo in your local pc
+                "E:\\GitRepository\\Spring\\project\\new\\blueblood\\src\\main\\webapp\\resources\\product\\img"
+                + File.separator + fileName);
+
+        BufferedOutputStream stream = new BufferedOutputStream(
+                new FileOutputStream(cFile));
+        stream.write(bytes);
+        stream.close();
+        System.out.println(cFile);
+    }
+
+
+		//For  jsp page
+//add enctype="multipart/form-data" 
+<form action="/product/store" method="POST" enctype="multipart/form-data">
+
+//Set type="file" for file upload
+<input name="pPhoto" type="file" class="form-control">
