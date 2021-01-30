@@ -1,0 +1,70 @@
+BackEnd
+--------------------------------------------------------
+
+ @RequestMapping(value = "/getUniversity/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getAllEmployees(@PathVariable("id") int id) {
+        
+        System.out.println("...................... " + id);
+        GsonBuilder gson = new GsonBuilder();
+        Gson g = gson.create();
+        University u=universityService.getById(id);
+        return g.toJson(u);
+    }
+
+
+
+
+
+Frontend
+------------------------------------------------------------------
+
+
+							<form action="/dSave" method="post">
+                                                            <h2 class="text-center">Add Department</h2>
+                                                            <select class="form-control mb-3" name="uniId">
+                                                                <c:forEach items="${map.uList}" var="uName">
+                                                                    
+                                                                    <option value="${uName.id}">${uName.uniName}</option>
+
+                                                                </c:forEach>
+                                                            </select>
+                                                            
+                                                            <input type="hidden" name="uid" value="" id="uid"/>
+                                                            <input type="hidden" name="name" value="" id="name"/>
+
+                                                            <div class="form-group"><input class="form-control" type="text" name="deptCode" placeholder="Department Code"></div>
+                                                            <div class="form-group"><input class="form-control" type="text" name="deptName" placeholder="Department Name"></div>
+
+
+
+
+                                                            <div class="form-group"><button class="btn  btn-primary btn-block" type="submit">Submit</button></div>
+                                                        </form>
+
+
+
+
+
+
+
+
+                                                        <script>
+                                                            $("select").change(function () {
+                                                            
+                                                                $.ajax({
+                                                                    url: 'getUniversity/'+this.value,
+                                                                    type: 'GET',
+                                                                    dataType: 'json',
+                                                                    success:function(data){
+                                                                        
+                                                                     //$("#id").val(data.id);
+                                                                     $("#uid").val(data.uniCode);
+                                                                     $("#name").val(data.uniName);
+                                                                    }
+                                                                    
+           
+
+                                                                });
+
+                                                            });
+                                                        </script> 
